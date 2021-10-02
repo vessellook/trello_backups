@@ -29,6 +29,8 @@ def set_schema(con: sql.Connection):
             name TEXT,
             description TEXT,
             list_external_id TEXT,
+            pos INT,
+            closed INT,
             board_id INT REFERENCES board(id)
         )""")
     con.execute(
@@ -60,9 +62,9 @@ def insert_lists(con: sql.Connection, board_id: int, lists: List[TrelloList]):
 
 def insert_card(con: sql.Connection, board_id: int, card: Card) -> int:
     cur = con.execute(
-        "INSERT INTO card (external_id, name, description, list_external_id, board_id)"
-        " VALUES (?, ?, ?, ?, ?)",
-        (card.id, card.name, card.desc, card.list_id, board_id))
+        "INSERT INTO card (external_id, name, description, list_external_id, board_id, closed, pos)"
+        " VALUES (?, ?, ?, ?, ?, ?, ?)",
+        (card.id, card.name, card.desc, card.list_id, board_id, int(card.closed), card.pos))
     return cur.lastrowid
 
 
