@@ -1,0 +1,10 @@
+[Timer]
+OnCalendar=Mon,Thu *-*-* 12:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+
+[Service]
+Type=simple
+ExecStart=/home/vessellook/projects/trello_backup/make log-start run log-finish

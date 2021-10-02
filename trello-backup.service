@@ -1,0 +1,6 @@
+[Unit]
+Description=Runs my trello_backup script
+
+[Service]
+WorkingDirectory=/home/vessellook/projects/trello_backup
+ExecStart=/usr/bin/make log-start run log-finish
