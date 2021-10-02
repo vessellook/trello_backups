@@ -1,4 +1,4 @@
-.PHONY: install _check_env_file run
+.PHONY: install _check_env_file run log-start log-finish
 
 VENV_DIR = venv
 PIP = $(VENV_DIR)/bin/pip
@@ -19,3 +19,12 @@ run: install _check_env_file
       --board-id Is2QkLGp \
       --workspace-id gtd37280280 \
       --env-file .env
+
+log-start:
+	test -f logs || touch logs
+	echo $$(date): start >> logs
+
+
+log-finish:
+	test -f logs || touch logs
+	echo $$(date): finish >> logs
